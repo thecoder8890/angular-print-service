@@ -6,18 +6,30 @@ import {Router} from '@angular/router';
 })
 export class PrintService {
   isPrinting = false;
+  private readonly printableDocuments = new Set(['invoice']);
 
   constructor(private router: Router) { }
 
-  printDocument(documentName: string, documentData: string[]) {
+  printDocument(documentName: string, documentData: readonly string[]): void {
+    if (!this.printableDocuments.has(documentName)) {
+      return;
+    }
+
+    const safeDocumentData = documentData
+      .filter((id) => /^[a-zA-Z0-9_-]+$/.test(id));
+
+    if (safeDocumentData.length === 0) {
+      return;
+    }
+
     this.isPrinting = true;
     this.router.navigate(['/',
       { outlets: {
-        'print': ['print', documentName, documentData.join()]
+        'print': ['print', documentName, safeDocumentData.join(',')]
       }}]);
   }
 
-  onDataReady() {
+  onDataReady(): void {
     setTimeout(() => {
       window.print();
       this.isPrinting = false;

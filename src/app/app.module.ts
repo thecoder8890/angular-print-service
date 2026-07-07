@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrintLayoutComponent } from './print-layout/print-layout.component';
 import { InvoiceComponent } from './invoice/invoice.component';
-import {PrintService} from './print.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,6 @@ import {PrintService} from './print.service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [PrintService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
