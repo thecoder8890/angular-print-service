@@ -9,6 +9,9 @@
     "lint": "tsc --noEmit -p src/tsconfig.app.json && tsc --noEmit -p src/tsconfig.spec.json"
   },
   "private": true,
+  "overrides": {
+    "@babel/core": "7.29.7"
+  },
   "dependencies": {
     "@angular/animations": "20.3.25",
     "@angular/common": "20.3.25",
