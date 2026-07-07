@@ -22,7 +22,6 @@ export class InvoiceComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.invoiceIds.length === 0) {
-      this.printService.onDataReady();
       return;
     }
 
